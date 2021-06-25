@@ -8,3 +8,9 @@
   color: red;
   text-align: center;
 }
+
+.logo{
+  padding: 10px;
+  background: #bf0a0a;
+  max-width: max-content;
+}

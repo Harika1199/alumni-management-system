@@ -1,10 +1,14 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './App.css';
+
 export default function Header() {
     return (
         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a className="navbar-brand" href="#">
-                Alumni Management system
-            </a>
+            <div className="logo">
+                <a className="navbar-brand" href="/">
+                    Alumni Management system
+                </a>
+            </div>
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <Link to="/" className="nav-link">Home</Link>
