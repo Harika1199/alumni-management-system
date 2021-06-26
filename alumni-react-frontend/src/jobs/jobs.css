@@ -4,3 +4,52 @@
     flex-direction: column;
     align-items: center;
 }
+
+#myModal{
+    display: block;
+}
+
+.width-webkit{
+    width: -webkit-fill-available;
+}
+
+.width-max{
+    width: max-content;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    font-size: 1.5rem !important;
+}
+
+.btn-popup{
+    width: max-content;
+}
+
+.each-job{
+    width: 100%;
+    background: #4474800a;
+    margin-bottom: 2rem;
+}
+
+.job-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #e69616;
+    align-items: center;
+}
+
+.posted-by{
+    padding-left: 10px;
+}
+
+.job-data{
+    width: 100%;
+    text-align: left !important;
+    margin-left: 20px;
+}
+
+.job-data-detail{
+    margin: auto;
+}

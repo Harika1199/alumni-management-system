@@ -227,34 +227,34 @@ export default function Registration() {
                             {/** Full Name */}
                             <div>
                                 <label htmlFor="uname"><b>Full Name</b></label>
-                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required />
+                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{fullNameError && fullNameError}</span>
                             </div>
 
                             {/** Email Address */}
                             <div>
                                 <label htmlFor="uname"><b>Email ID</b></label>
-                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required />
+                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{emailError && emailError}</span>
                             </div>
 
                             {/** Course */}
                             <div>
                                 <label htmlFor="uname"><b>Course</b></label>
-                                <input type="text" placeholder="Enter Course" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required />
+                                <input type="text" placeholder="Enter Course" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{courseError && courseError}</span>
                             </div>
                             {/** Contact no */}
                             <div>
                                 <label htmlFor="uname"><b>Contact No</b></label>
-                                <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required />
+                                <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{contactError && contactError}</span>
                             </div>
 
                             {/** Address */}
                             <div>
                                 <label htmlFor="uname"><b>Address</b></label>
-                                <input type="text" placeholder="Enter Address" name="uname" ref={addressRef} onChange={() => formValidation('addressRef')} required />
+                                <input type="text" placeholder="Enter Address" name="uname" ref={addressRef} onChange={() => formValidation('addressRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{addressError && addressError}</span>
                             </div>
 
@@ -262,7 +262,7 @@ export default function Registration() {
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Occupation</b></label>
-                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required />
+                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required autoComplete={"off"} />
                                     <span className="error_msg">{jobError && jobError}</span>
                                 </div>}
 
@@ -270,7 +270,7 @@ export default function Registration() {
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Job Location</b></label>
-                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required />
+                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required autoComplete={"off"} />
                                     <span className="error_msg">{jobLocationError && jobLocationError}</span>
                                 </div>}
 
@@ -278,30 +278,30 @@ export default function Registration() {
                             <>
                                 <div className="dropdown-signup">
                                     {userType && userType == 2 &&
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                                        <div className="btn-group">
+                                            <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                                                 PassedOut Year
                                             </button>
 
-                                            <div class="dropdown-menu">
+                                            <div className="dropdown-menu">
                                                 {
                                                     [2020, 2019, 2018, 2017, 2016].map((eachYear, index) => {
-                                                        return <p class="dropdown-item" ref={passedOutYearRef}>{eachYear}</p>
+                                                        return <p className="dropdown-item" ref={passedOutYearRef} key={index}>{eachYear}</p>
                                                     })
                                                 }
 
                                             </div>
                                         </div>}
 
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                                    <div className="btn-group">
+                                        <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                                             Branch
                                         </button>
 
-                                        <div class="dropdown-menu">
+                                        <div className="dropdown-menu">
                                             {
                                                 ["CSE", "ECE", "EEE", "CE", "ME"].map((eachBranch, index) => {
-                                                    return <p class="dropdown-item" ref={branchRef}>{eachBranch}</p>
+                                                    return <p className="dropdown-item" ref={branchRef} key={index}>{eachBranch}</p>
                                                 })
                                             }
                                         </div>
@@ -315,13 +315,13 @@ export default function Registration() {
                             {/** Password */}
                             <div>
                                 <label htmlFor="psw"><b>Password</b></label>
-                                <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required />
+                                <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{passwdError && passwdError}</span>
                             </div>
                             {/** Confirm Password */}
                             <div>
                                 <label htmlFor="psw"><b>Confirm Password</b></label>
-                                <input type="password" placeholder="Confirm Password" name="psw" ref={confirmPasswdRef} onChange={() => formValidation('confirmPasswdRef')} required />
+                                <input type="password" placeholder="Confirm Password" name="psw" ref={confirmPasswdRef} onChange={() => formValidation('confirmPasswdRef')} required autoComplete={"off"} />
                                 <span className="error_msg">{confirmPasswdError && confirmPasswdError}</span>
                             </div>
 

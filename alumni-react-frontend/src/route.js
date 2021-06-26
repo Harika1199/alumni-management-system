@@ -11,11 +11,12 @@ import About from './about';
 import Registration from './register';
 import PageNotFound from './pageNotFound';
 import Jobs from './jobs/jobs';
+import history from './history';
 
 class Routes extends React.Component {
     render() {
         return (
-            <Router>
+            <Router history={history}>
                 <Switch>
                     <Route exact path='/' component={App}></Route>
                     <Route exact path='/about' component={About}></Route>

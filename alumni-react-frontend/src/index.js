@@ -2,15 +2,23 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Routes from './route';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import RootReducer from './rootReducer';
+import { createStore } from 'redux';
 
 
 //root element of the project
 const rootElement = document.getElementById('root');
 
+//Create Store
+const store = createStore(RootReducer);
 
 export function renderApp() {
 
-    return <Routes />
+    return (
+        <Provider store={store}>
+            <Routes />
+        </Provider>)
 }
 render(renderApp(), (rootElement));
 // ReactDOM.render(

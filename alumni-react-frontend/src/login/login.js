@@ -1,12 +1,15 @@
 import { useState, useRef } from "react";
 import Header from '../header';
+import { useDispatch } from "react-redux";
 import './login.css';
 
-export default function UserLogin() {
+export default function UserLogin({ history }) {
     const emailRef = useRef("");
     const passwdRef = useRef("");
     const [emailError, setEmailError] = useState("");
     const [passwdError, setPasswsError] = useState("");
+
+    const dispatch = useDispatch();
 
     // Validate Email Address
     function validateEmail(email) {
@@ -22,30 +25,29 @@ export default function UserLogin() {
 
             }
             case "emailRef": {
-                if (refName == "emailRef") {
-                    if (!emailRef || !emailRef.current || !emailRef.current.value || (emailRef && emailRef.current.value.trim() === "")) {
-                        setEmailError("Please Enter Email Address");
-                        errorCount = errorCount + 1;
-                    } else if (!validateEmail(emailRef.current.value.trim())) {
-                        setEmailError("Invalid Email ID");
-                        errorCount = errorCount + 1;
-                    } else {
-                        setEmailError("");
-                    }
+
+                if (!emailRef || !emailRef.current || !emailRef.current.value || (emailRef && emailRef.current.value.trim() === "")) {
+                    setEmailError("Please Enter Email Address");
+                    errorCount = errorCount + 1;
+                } else if (!validateEmail(emailRef.current.value.trim())) {
+                    setEmailError("Invalid Email ID");
+                    errorCount = errorCount + 1;
+                } else {
+                    setEmailError("");
+                }
+                if (refName !== "all") {
                     break;
                 }
             }
             case "passwdRef": {
-                if (refName == "passwdRef") {
-                    if (!passwdRef || !passwdRef.current || !passwdRef.current.value || (passwdRef && passwdRef.current.value.trim() === "")) {
-                        setPasswsError("Please Enter Password");
-                        errorCount = errorCount + 1;
-                    } else {
-                        setPasswsError("");
-                    }
-                    if (refName !== "all") {
-                        break;
-                    }
+                if (!passwdRef || !passwdRef.current || !passwdRef.current.value || (passwdRef && passwdRef.current.value.trim() === "")) {
+                    setPasswsError("Please Enter Password");
+                    errorCount = errorCount + 1;
+                } else {
+                    setPasswsError("");
+                }
+                if (refName !== "all") {
+                    break;
                 }
             }
             default: {
@@ -60,7 +62,9 @@ export default function UserLogin() {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
+            dispatch({ type: "USER_LOGIN", payLoad: true });
             console.log("All fields are validated");
+            history.push("/")
         }
     }
 
@@ -77,14 +81,14 @@ export default function UserLogin() {
                     {/** Email Address */}
                     <div>
                         <label htmlFor="uname"><b>Email ID</b></label>
-                        <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required />
+                        <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"}/>
                         <span className="error_msg">{emailError && emailError}</span>
                     </div>
 
                     {/** Password */}
                     <div>
                         <label htmlFor="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required />
+                        <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required autoComplete={"off"} />
                         <span className="error_msg">{passwdError && passwdError}</span>
                     </div>
 
