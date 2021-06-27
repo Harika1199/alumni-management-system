@@ -88,7 +88,6 @@ export default function CreateJob({closePopup}) {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
-            console.log("All fields are validated");
             let newJob={
                 postedBy: "Harika",
                 companyName:companyNameRef.current.value.trim(),

@@ -1,15 +1,26 @@
-import { useContext, useState } from "react";
-import Header from "../header";
+import { useContext, useEffect, useState } from "react";
+import Header from "../../pages/header";
 import './jobs.css';
 import CreateJob from "./createJob";
 import ApplyJob from "./applyJob";
-import ToastMessage from "../toastMessage";
+import ToastMessage from "../toast/toastMessage";
 import { JobContext } from "./useJob";
-export default function Jobs() {
+import { useSelector } from 'react-redux';
+
+export default function Jobs({ history }) {
     const [openCreateJobPopup, setOpenCreateJobPopup] = useState(false);
     const [openApplyJobPopup, setOpenApplyJobPopup] = useState(false);
 
     const jobContextValue = useContext(JobContext);
+
+    const state = useSelector(state => state.login)
+
+    useEffect(() => {
+        if (!state.isLoggedIn) {
+            ToastMessage.notify("Please Login to Continue..");
+            history.push("/login");
+        }
+    }, [state.isLoggedIn])
 
     const closePopup = (status, type) => {
         if (type == "post") {
@@ -30,12 +41,11 @@ export default function Jobs() {
             <div className="container jobs">
                 <h2>Job Openings</h2>
                 <button type="button" className="btn btn-primary width-max align-right" data-toggle="modal" onClick={() => setOpenCreateJobPopup(!openCreateJobPopup)}>Post A Job</button>
-              
+
                 {
                     jobContextValue.jobs.map((eachJob, index) => {
                         return (
                             <div className="each-job" key={index}>
-                                {console.log(eachJob)}
                                 <div className="job-header">
                                     <h4 className="posted-by">Posted By {eachJob.postedBy}</h4>
                                     <button type="button" className="btn btn-primary width-max" data-toggle="modal" onClick={() => setOpenApplyJobPopup(!openApplyJobPopup)}>Apply For Job</button>

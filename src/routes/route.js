@@ -5,14 +5,14 @@ import {
     Switch,
     Redirect,
 } from 'react-router-dom';
-import UserLogin from './login/login';
-import App from './App';
-import About from './about';
-import Registration from './register';
-import PageNotFound from './pageNotFound';
-import Jobs from './jobs/jobs';
+import UserLogin from '../components/login/login';
+import App from '../components/App';
+import About from '../pages/about';
+import Registration from '../components/login/register';
+import PageNotFound from '../pages/pageNotFound';
+import Jobs from '../components/jobs/jobs';
 import history from './history';
-import JobContextProvider from './jobs/useJob';
+import JobContextProvider from '../components/jobs/useJob';
 
 class Routes extends React.Component {
     render() {

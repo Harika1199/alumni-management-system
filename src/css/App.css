@@ -14,3 +14,17 @@
   background: #bf0a0a;
   max-width: max-content;
 }
+
+.navbar-brand{
+    font-family: "Audiowide", sans-serif;
+}
+
+.nav-link{
+  font-size: 20px;
+  color: #f7f7f7 !important;
+  font-family: Georgia;
+}
+
+.navbar-nav{
+  margin-left: 50px;
+}

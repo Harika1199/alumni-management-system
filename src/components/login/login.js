@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import ToastMessage from '../toastMessage';
-import Header from '../header';
+import ToastMessage from '../toast/toastMessage';
+import Header from '../../pages/header';
 import { useSelector,useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import './login.css';
@@ -71,8 +71,8 @@ export default function UserLogin({ history }) {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
+            localStorage.setItem("token","xyz")
             dispatch({ type: "USER_LOGIN", payLoad: true });
-            console.log("All fields are validated");
             history.push("/")
         }
     }

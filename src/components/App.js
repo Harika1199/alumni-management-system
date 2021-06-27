@@ -1,10 +1,10 @@
-import './App.css';
-import Header from './header';
-import banner from './banner.jpg';
+import '../css/App.css';
+import Header from '../pages/header';
+import banner from '../images/banner.jpg';
 import {useEffect} from 'react';
-import ToastMessage from './toastMessage';
+import ToastMessage from './toast/toastMessage';
 import { useSelector } from 'react-redux';
-import CarouselComponent from './carousel';
+import CarouselComponent from '../pages/carousel';
 
 function App() {
   const state = useSelector(state=>state.login)
@@ -22,7 +22,7 @@ function App() {
     <div className="App" id='body-div'>
       <Header />
       <div>
-        <CarouselComponent />
+        {/* <CarouselComponent /> */}
         <img src={banner} className="home-banner" alt="banner" />
         <h2 className="home-heading">Welcome To Alumni Management System</h2>
       </div>

@@ -1,5 +1,5 @@
 const initialState={
-    isLoggedIn: false,
+    isLoggedIn: localStorage.getItem("token") ? true:false,
     isRegistered: false
 };
 

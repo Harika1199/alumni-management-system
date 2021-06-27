@@ -1,9 +1,9 @@
-import './index.css';
+import './css/index.css';
 import reportWebVitals from './reportWebVitals';
-import Routes from './route';
+import Routes from './routes/route';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import RootReducer from './rootReducer';
+import RootReducer from './redux/rootReducer';
 import { createStore } from 'redux';
 
 

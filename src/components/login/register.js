@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Header from './header';
-import './login/login.css';
+import Header from '../../pages/header';
+import './login.css';
 
 export default function Registration({history}) {
     // Student And Alumni Details
@@ -9,11 +9,9 @@ export default function Registration({history}) {
     const passwdRef = useRef("");
     const fullNameRef = useRef("");
     const contactRef = useRef("");
-    const courseRef = useRef("");
     const addressRef = useRef("");
     const jobRef = useRef(""); // Alumni
     const jobLocationRef = useRef(""); // Alumni
-    const passedOutYearRef = useRef(""); // Alumni
     const confirmPasswdRef = useRef("");
     const [userType, setUserType] = useState(1); // Default Student
     const [emailError, setEmailError] = useState("");
@@ -204,7 +202,6 @@ export default function Registration({history}) {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
-            console.log("All fields are validated");
             dispatch({ type: "USER_REGISTRATION", payLoad: true });
             history.push("/login");
         }

@@ -86,7 +86,6 @@ export default function ApplyJob({closePopup}) {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
-            console.log("All fields are validated");
             closePopup(true,"apply");
         }
     }
