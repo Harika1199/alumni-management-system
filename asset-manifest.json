@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/alumni-management-system/static/css/main.7cc4d616.chunk.css",
-    "main.js": "/alumni-management-system/static/js/main.38eeb660.chunk.js",
-    "main.js.map": "/alumni-management-system/static/js/main.38eeb660.chunk.js.map",
+    "main.css": "/alumni-management-system/static/css/main.01593620.chunk.css",
+    "main.js": "/alumni-management-system/static/js/main.23582575.chunk.js",
+    "main.js.map": "/alumni-management-system/static/js/main.23582575.chunk.js.map",
     "runtime-main.js": "/alumni-management-system/static/js/runtime-main.ab5656f4.js",
     "runtime-main.js.map": "/alumni-management-system/static/js/runtime-main.ab5656f4.js.map",
     "static/css/2.6b560088.chunk.css": "/alumni-management-system/static/css/2.6b560088.chunk.css",
-    "static/js/2.546e667b.chunk.js": "/alumni-management-system/static/js/2.546e667b.chunk.js",
-    "static/js/2.546e667b.chunk.js.map": "/alumni-management-system/static/js/2.546e667b.chunk.js.map",
+    "static/js/2.55c4677c.chunk.js": "/alumni-management-system/static/js/2.55c4677c.chunk.js",
+    "static/js/2.55c4677c.chunk.js.map": "/alumni-management-system/static/js/2.55c4677c.chunk.js.map",
     "static/js/3.ab7cd80c.chunk.js": "/alumni-management-system/static/js/3.ab7cd80c.chunk.js",
     "static/js/3.ab7cd80c.chunk.js.map": "/alumni-management-system/static/js/3.ab7cd80c.chunk.js.map",
     "index.html": "/alumni-management-system/index.html",
     "static/css/2.6b560088.chunk.css.map": "/alumni-management-system/static/css/2.6b560088.chunk.css.map",
-    "static/css/main.7cc4d616.chunk.css.map": "/alumni-management-system/static/css/main.7cc4d616.chunk.css.map",
-    "static/js/2.546e667b.chunk.js.LICENSE.txt": "/alumni-management-system/static/js/2.546e667b.chunk.js.LICENSE.txt",
+    "static/css/main.01593620.chunk.css.map": "/alumni-management-system/static/css/main.01593620.chunk.css.map",
+    "static/js/2.55c4677c.chunk.js.LICENSE.txt": "/alumni-management-system/static/js/2.55c4677c.chunk.js.LICENSE.txt",
     "static/media/banner.a432192d.jpg": "/alumni-management-system/static/media/banner.a432192d.jpg",
     "static/media/grad1.942c2ecf.jpg": "/alumni-management-system/static/media/grad1.942c2ecf.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.ab5656f4.js",
     "static/css/2.6b560088.chunk.css",
-    "static/js/2.546e667b.chunk.js",
-    "static/css/main.7cc4d616.chunk.css",
-    "static/js/main.38eeb660.chunk.js"
+    "static/js/2.55c4677c.chunk.js",
+    "static/css/main.01593620.chunk.css",
+    "static/js/main.23582575.chunk.js"
   ]
 }
