@@ -10,9 +10,9 @@ export default function Header() {
     return (
         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
             <div className="logo">
-                <a className="navbar-brand" href="/">
+                <Link to="/" className="navbar-brand">
                     Alumni Management system
-                </a>
+                </Link>
             </div>
             <ul className="navbar-nav">
                 <li className="nav-item">
