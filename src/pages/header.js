@@ -6,7 +6,7 @@ export default function Header() {
     const state = useSelector(state => state.login);
     const dispatch = useDispatch();
 
-    const Logout=()=>{
+    const Logout = () => {
         localStorage.removeItem("token");
         dispatch({ type: "USER_LOGOUT", payLoad: false })
     }
@@ -34,7 +34,10 @@ export default function Header() {
                     }
                 </li>
                 <li className="nav-item mr-30">
-                    <Link to="/register" className="nav-link">Register</Link>
+                    {
+                        !state.isLoggedIn &&
+                        <Link to="/register" className="nav-link">Register</Link>
+                    }
                 </li>
                 {
                     state.isLoggedIn &&
@@ -43,7 +46,7 @@ export default function Header() {
                             My Account
                         </a>
                         <div className="dropdown-menu">
-                            <Link to="/" className="dropdown-item" onClick={() => {Logout()}}>Logout
+                            <Link to="/" className="dropdown-item" onClick={() => { Logout() }}>Logout
                             </Link>
                         </div>
                     </li>
