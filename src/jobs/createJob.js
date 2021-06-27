@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
-export default function CreateJob() {
+import { useRef, useState, useContext } from "react";
+import { JobContext } from "./useJob";
+export default function CreateJob({closePopup}) {
     // Student And Alumni Details
     const companyNameRef = useRef("");
     const locationRef = useRef("");
@@ -12,6 +13,8 @@ export default function CreateJob() {
     const [skillsError, setSkillsError] = useState("");
     const [packageError, setPackageError] = useState("");
 
+    const jobContextValue = useContext(JobContext);
+
     const formValidation = (refName) => {
         let errorCount = 0;
         switch (refName) {
@@ -19,8 +22,11 @@ export default function CreateJob() {
 
             }
             case "companyNameRef": {
-                if (!companyNameRef || !companyNameRef.current || !companyNameRef.current.value || (companyNameRef && companyNameRef.current.value.trim() === "")) {
+                if (!companyNameRef || !companyNameRef.current || !companyNameRef.current.value || (companyNameRef && companyNameRef.current.value.trim().length === 0)) {
                     setCompanyNameError("Enter Company Name");
+                    errorCount = errorCount + 1;
+                } else if (companyNameRef.current.value && !((/^[a-zA-Z ]+$/).test(companyNameRef.current.value.trim()))) {
+                    setCompanyNameError('Enter alphabets only');
                     errorCount = errorCount + 1;
                 } else {
                     setCompanyNameError("");
@@ -33,7 +39,10 @@ export default function CreateJob() {
                 if (!locationRef || !locationRef.current || !locationRef.current.value || (locationRef && locationRef.current.value.trim() === "")) {
                     setLocationError("Enter Location");
                     errorCount = errorCount + 1;
-                } else {
+                } else if (locationRef.current.value && !((/^[a-zA-Z ]+$/).test(locationRef.current.value.trim()))) {
+                    setLocationError('Enter alphabets only');
+                    errorCount = errorCount + 1;
+                }else {
                     setLocationError("");
                 }
                 if (refName !== "all") {
@@ -42,7 +51,7 @@ export default function CreateJob() {
             }
             case "experienceRef": {
                 if (!experienceRef || !experienceRef.current || !experienceRef.current.value || (experienceRef && experienceRef.current.value.trim() === "")) {
-                    setExperienceError("Enter Required Experience");
+                    setExperienceError("Enter Required maxLength={30} Experience");
                     errorCount = errorCount + 1;
                 } else {
                     setExperienceError("");
@@ -74,11 +83,22 @@ export default function CreateJob() {
                 }
             }
         }
+        return errorCount === 0 ? true : false;
     }
 
     const handleSubmit = () => {
         if (formValidation('all')) {
             console.log("All fields are validated");
+            let newJob={
+                postedBy: "Harika",
+                companyName:companyNameRef.current.value.trim(),
+                location:locationRef.current.value.trim(),
+                experience:experienceRef.current.value.trim(),
+                skills:skillsRef.current.value.trim(),
+                package:packageRef.current.value.trim()
+            };
+            jobContextValue.setJobs(oldArray=>[...oldArray,newJob]);
+            closePopup(true,"post");
         }
     }
 
@@ -92,7 +112,7 @@ export default function CreateJob() {
                         {/**<!-- Modal Header -->*/}
                         <div className="modal-header">
                             <h1 className="modal-title width-webkit">Post A Job</h1>
-                            <button type="button" className="close width-max" data-dismiss="modal">×</button>
+                            <button type="button" className="close width-max" onClick={()=> closePopup(false,"post")}>×</button>
                         </div>
 
                         {/**<!-- Modal body -->*/}
@@ -101,33 +121,33 @@ export default function CreateJob() {
                                 {/** Company Name */}
                                 <div>
                                     <label htmlFor="uname"><b>Company Name</b></label>
-                                    <input type="text" placeholder="Enter Company Name" name="uname" ref={companyNameRef} onChange={() => formValidation('companyNameRef')} required />
+                                    <input type="text" placeholder="Enter Company Name" name="uname" ref={companyNameRef} onChange={() => formValidation('companyNameRef')} required maxLength={20} />
                                     <span className="error_msg">{companyNameError && companyNameError}</span>
                                 </div>
 
                                 {/** Company Location */}
                                 <div>
                                     <label htmlFor="psw"><b>Location</b></label>
-                                    <input type="text" placeholder="Enter Company's Location" name="psw" ref={locationRef} onChange={() => formValidation('locationRef')} required />
+                                    <input type="text" placeholder="Enter Company's Location" name="psw" ref={locationRef} onChange={() => formValidation('locationRef')} required maxLength={20} />
                                     <span className="error_msg">{locationError && locationError}</span>
                                 </div>
 
                                 {/** Experience */}
                                 <div>
                                     <label htmlFor="psw"><b>Experience</b></label>
-                                    <input type="text" placeholder="Enter Experience" name="psw" ref={experienceRef} onChange={() => formValidation('experienceRef')} required />
+                                    <input type="text" placeholder="Enter Experience" name="psw" ref={experienceRef} onChange={() => formValidation('experienceRef')} required maxLength={20} />
                                     <span className="error_msg">{experienceError && experienceError}</span>
                                 </div>
                                 {/** Skills */}
                                 <div>
                                     <label htmlFor="psw"><b>Skills</b></label>
-                                    <input type="text" placeholder="Enter skills" name="psw" ref={skillsRef} onChange={() => formValidation('skillsRef')} required />
+                                    <input type="text" placeholder="Enter skills" name="psw" ref={skillsRef} onChange={() => formValidation('skillsRef')} required maxLength={40} />
                                     <span className="error_msg">{skillsError && skillsError}</span>
                                 </div>
                                 {/** Package */}
                                 <div>
                                     <label htmlFor="psw"><b>CTC</b></label>
-                                    <input type="text" placeholder="Enter CTC P.A." name="psw" ref={packageRef} onChange={() => formValidation('packageRef')} required />
+                                    <input type="text" placeholder="Enter CTC P.A." name="psw" ref={packageRef} onChange={() => formValidation('packageRef')} required maxLength={20} />
                                     <span className="error_msg">{packageError && packageError}</span>
                                 </div>
                             </div>
@@ -136,7 +156,7 @@ export default function CreateJob() {
                         {/**<!-- Modal footer -->*/}
                         <div className="modal-footer">
                             <button type="submit" className="btn btn-success btn-popup" onClick={() => handleSubmit()}>Post</button>
-                            <button type="button" className="btn btn-danger btn-popup" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-danger btn-popup" onClick={()=> closePopup(false,"post")}>Close</button>
                         </div>
 
                     </div>

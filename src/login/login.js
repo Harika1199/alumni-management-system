@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import ToastMessage from '../toastMessage';
 import Header from '../header';
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 import './login.css';
 
 export default function UserLogin({ history }) {
@@ -9,7 +11,14 @@ export default function UserLogin({ history }) {
     const [emailError, setEmailError] = useState("");
     const [passwdError, setPasswsError] = useState("");
 
+    const state = useSelector(state=>state.login)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(state.isRegistered){
+          ToastMessage.notify("Registered Successfully.Please Login..");
+        }         
+    },[state.isRegistered])
 
     // Validate Email Address
     function validateEmail(email) {
@@ -99,7 +108,7 @@ export default function UserLogin({ history }) {
                 </div>
 
                 <div className="login-footer">
-                    <span className="psw"><a href="#">Register</a></span>
+                    <span className="psw">New User?<Link to="/login">Register Here</Link></span>
                     <span className="psw"><a href="#">Forgot password?</a></span>
                 </div>
 

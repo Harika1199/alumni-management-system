@@ -22,6 +22,9 @@
     font-size: 1.5rem !important;
 }
 
+.align-right{
+    align-self: flex-end;
+}
 .btn-popup{
     width: max-content;
 }

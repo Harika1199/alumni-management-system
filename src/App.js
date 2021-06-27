@@ -4,6 +4,7 @@ import banner from './banner.jpg';
 import {useEffect} from 'react';
 import ToastMessage from './toastMessage';
 import { useSelector } from 'react-redux';
+import CarouselComponent from './carousel';
 
 function App() {
   const state = useSelector(state=>state.login)
@@ -21,6 +22,7 @@ function App() {
     <div className="App" id='body-div'>
       <Header />
       <div>
+        <CarouselComponent />
         <img src={banner} className="home-banner" alt="banner" />
         <h2 className="home-heading">Welcome To Alumni Management System</h2>
       </div>

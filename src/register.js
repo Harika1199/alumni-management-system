@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Header from './header';
 import './login/login.css';
 
-export default function Registration() {
+export default function Registration({history}) {
     // Student And Alumni Details
     const emailRef = useRef("");
     const passwdRef = useRef("");
     const fullNameRef = useRef("");
     const contactRef = useRef("");
     const courseRef = useRef("");
-    const branchRef = useRef("");
     const addressRef = useRef("");
     const jobRef = useRef(""); // Alumni
     const jobLocationRef = useRef(""); // Alumni
@@ -27,6 +27,12 @@ export default function Registration() {
     const [jobLocationError, setJobLocationError] = useState("");
     const [confirmPasswdError, setConfirmPasswdError] = useState("");
     const [passedOutYearError, setPassedOutYearError] = useState("");
+
+    const [branch, setBranch] = useState("");
+    const [course, setCourse] = useState("");
+    const [poyear, setPoyear] = useState("");
+
+    const dispatch = useDispatch();
 
 
     // Validate Email Address
@@ -79,8 +85,11 @@ export default function Registration() {
                 }
             }
             case "fullNameRef": {
-                if (!fullNameRef || !fullNameRef.current || !fullNameRef.current.value || (fullNameRef && fullNameRef.current.value.trim() === "")) {
+                if (!fullNameRef || !fullNameRef.current || !fullNameRef.current.value || (fullNameRef && fullNameRef.current.value.trim().length === 0)) {
                     setFullNameError("Enter Full Name");
+                    errorCount = errorCount + 1;
+                } else if (fullNameRef.current.value && !((/^[a-zA-Z ]+$/).test(fullNameRef.current.value.trim()))) {
+                    setFullNameError('Enter alphabets only');
                     errorCount = errorCount + 1;
                 } else {
                     setFullNameError("");
@@ -90,9 +99,14 @@ export default function Registration() {
                 }
             }
             case "contactRef": {
-                if (!contactRef || !contactRef.current || !contactRef.current.value || (contactRef && contactRef.current.value.trim() === "")) {
+                if (!contactRef || !contactRef.current || !contactRef.current.value || (contactRef && contactRef.current.value.trim() === ("" || null))) {
                     setContactError("Enter Contact Number");
                     errorCount = errorCount + 1;
+                } else if (contactRef.current.value.trim().length < 10 || contactRef.current.value.trim().length > 10) {
+                    setContactError('Contact number must have 10 digits');
+                    errorCount = errorCount + 1;
+                } else if ((/^[0-9]*$/).test(contactRef.current.value.trim())) {
+                    setContactError("");
                 } else {
                     setContactError("");
                 }
@@ -101,7 +115,7 @@ export default function Registration() {
                 }
             }
             case "courseRef": {
-                if (!courseRef || !courseRef.current || !courseRef.current.value || (courseRef && courseRef.current.value.trim() === "")) {
+                if (course === "" || course == "Course") {
                     setCourseError("Enter Course Name");
                     errorCount = errorCount + 1;
                 } else {
@@ -112,7 +126,7 @@ export default function Registration() {
                 }
             }
             case "branchRef": {
-                if (!branchRef || !branchRef.current || !branchRef.current.value || (branchRef && branchRef.current.value.trim() === "")) {
+                if (branch === "" || branch == "Branch") {
                     setBranchError("Select Branch");
                     errorCount = errorCount + 1;
                 } else {
@@ -135,8 +149,11 @@ export default function Registration() {
             }
             case "jobRef": {
                 if (userType && userType == 2) {
-                    if (!jobRef || !jobRef.current || !jobRef.current.value || (jobRef && jobRef.current.value.trim() === "")) {
+                    if (!jobRef || !jobRef.current || !jobRef.current.value || (jobRef && jobRef.current.value.trim().length === 0)) {
                         setJobError("Enter Occupation");
+                        errorCount = errorCount + 1;
+                    } else if (jobRef.current.value && !((/^[a-zA-Z ]+$/).test(jobRef.current.value.trim()))) {
+                        setJobError('Enter alphabets only');
                         errorCount = errorCount + 1;
                     } else {
                         setJobError("");
@@ -148,8 +165,11 @@ export default function Registration() {
             }
             case "jobLocationRef": {
                 if (userType && userType == 2) {
-                    if (!jobLocationRef || !jobLocationRef.current || !jobLocationRef.current.value || (jobLocationRef && jobLocationRef.current.value.trim() === "")) {
+                    if (!jobLocationRef || !jobLocationRef.current || !jobLocationRef.current.value || (jobLocationRef && jobLocationRef.current.value.trim().length === 0)) {
                         setJobLocationError("Enter Job Location");
+                        errorCount = errorCount + 1;
+                    } else if (jobLocationRef.current.value && !((/^[a-zA-Z ]+$/).test(jobLocationRef.current.value.trim()))) {
+                        setJobLocationError('Enter alphabets only');
                         errorCount = errorCount + 1;
                     } else {
                         setJobLocationError("");
@@ -161,7 +181,7 @@ export default function Registration() {
             }
             case "passedOutYearRef": {
                 if (userType && userType == 2) {
-                    if (!passedOutYearRef || !passedOutYearRef.current || !passedOutYearRef.current.value || (passedOutYearRef && passedOutYearRef.current.value.trim() === "")) {
+                    if (poyear === "" || poyear == "Year of Pass") {
                         setPassedOutYearError("Select PassedOut Year");
                         errorCount = errorCount + 1;
                     } else {
@@ -185,6 +205,8 @@ export default function Registration() {
     const handleSubmit = () => {
         if (formValidation('all')) {
             console.log("All fields are validated");
+            dispatch({ type: "USER_REGISTRATION", payLoad: true });
+            history.push("/login");
         }
     }
 
@@ -192,10 +214,20 @@ export default function Registration() {
         return userType == tabNumber ? " active" : "";
     }
 
-    useEffect(()=>{
-        console.log("userType",userType);
-    },[userType]);
-    
+    useEffect(() => {
+        setFullNameError("");
+        setJobError("");
+        setJobLocationError("");
+        setBranchError("");
+        setEmailError("");
+        setPassedOutYearError("");
+        setPasswdError("");
+        setContactError("");
+        setConfirmPasswdError("");
+        setCourseError("");
+        setAddressError("");
+    }, [userType]);
+
     return (
         <>
             <Header />
@@ -212,9 +244,9 @@ export default function Registration() {
                     <ul className="nav nav-tabs nav-justified" role="tablist">
                         <li className="nav-item">
                             <a className={"nav-link" + getTabClassName(1)} data-toggle="tab" href="#tab1" onClick={(e) => {
-                                console.log(e)
-                                setUserType(1)}}
-                                >Student</a>
+                                setUserType(1)
+                            }}
+                            >Student</a>
                         </li>
                         <li className="nav-item">
                             <a className={"nav-link" + getTabClassName(2)} data-toggle="tab" href="#tab1" onClick={() => setUserType(2)}>Alumni</a>
@@ -227,42 +259,37 @@ export default function Registration() {
                             {/** Full Name */}
                             <div>
                                 <label htmlFor="uname"><b>Full Name</b></label>
-                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete={"off"} />
+                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete={"off"} maxLength={20}/>
                                 <span className="error_msg">{fullNameError && fullNameError}</span>
                             </div>
 
                             {/** Email Address */}
                             <div>
                                 <label htmlFor="uname"><b>Email ID</b></label>
-                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} />
+                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} maxLength={30}/>
                                 <span className="error_msg">{emailError && emailError}</span>
-                            </div>
-
-                            {/** Course */}
-                            <div>
-                                <label htmlFor="uname"><b>Course</b></label>
-                                <input type="text" placeholder="Enter Course" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} />
-                                <span className="error_msg">{courseError && courseError}</span>
                             </div>
                             {/** Contact no */}
                             <div>
                                 <label htmlFor="uname"><b>Contact No</b></label>
-                                <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required autoComplete={"off"} />
+                                <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required autoComplete={"off"} maxLength={10} />
                                 <span className="error_msg">{contactError && contactError}</span>
                             </div>
 
                             {/** Address */}
                             <div>
-                                <label htmlFor="uname"><b>Address</b></label>
-                                <input type="text" placeholder="Enter Address" name="uname" ref={addressRef} onChange={() => formValidation('addressRef')} required autoComplete={"off"} />
-                                <span className="error_msg">{addressError && addressError}</span>
+                                <div className="form-group">
+                                    <label htmlFor="uname"><b>Address</b></label>
+                                    <textarea className="form-control" placeholder="Enter Address" rows="5" id="comment" ref={addressRef} onChange={() => formValidation('addressRef')} required autoComplete={"off"} maxLength={150}></textarea>
+                                    <span className="error_msg">{addressError && addressError}</span>
+                                </div>
                             </div>
 
                             {/** Job */}
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Occupation</b></label>
-                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required autoComplete={"off"} />
+                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required autoComplete={"off"} maxLength={20}/>
                                     <span className="error_msg">{jobError && jobError}</span>
                                 </div>}
 
@@ -270,46 +297,53 @@ export default function Registration() {
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Job Location</b></label>
-                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required autoComplete={"off"} />
+                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required autoComplete={"off"} maxLength={20}/>
                                     <span className="error_msg">{jobLocationError && jobLocationError}</span>
                                 </div>}
 
-                            {/** Passed Out Year */} {/** Branch */}
+                            {/** Passed Out Year */} {/** Branch */}{/** Course */}
                             <>
                                 <div className="dropdown-signup">
                                     {userType && userType == 2 &&
                                         <div className="btn-group">
-                                            <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                                                PassedOut Year
-                                            </button>
 
-                                            <div className="dropdown-menu">
+
+                                            <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setPoyear(e.currentTarget.value);setPassedOutYearError("") }}>
+                                                <option>Year of Pass</option>
                                                 {
                                                     [2020, 2019, 2018, 2017, 2016].map((eachYear, index) => {
-                                                        return <p className="dropdown-item" ref={passedOutYearRef} key={index}>{eachYear}</p>
+                                                        return <option key={index} value={eachYear}>{eachYear}</option>
                                                     })
                                                 }
-
-                                            </div>
+                                            </select>
                                         </div>}
 
                                     <div className="btn-group">
-                                        <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                                            Branch
-                                        </button>
-
-                                        <div className="dropdown-menu">
+                                        <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setBranch(e.currentTarget.value); setBranchError(""); }}>
+                                            <option>Branch</option>
                                             {
                                                 ["CSE", "ECE", "EEE", "CE", "ME"].map((eachBranch, index) => {
-                                                    return <p className="dropdown-item" ref={branchRef} key={index}>{eachBranch}</p>
+                                                    return <option key={index} value={eachBranch}>{eachBranch}</option>
                                                 })
                                             }
-                                        </div>
+                                        </select>
+                                    </div>
+
+                                    <div className="btn-group">
+                                        <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setCourse(e.currentTarget.value);setCourseError("")}}>
+                                            <option>Course</option>
+                                            {
+                                                ["BTech", "BE", "MS", "MTech", "MBA"].map((eachCourse, index) => {
+                                                    return <option key={index} value={eachCourse}>{eachCourse}</option>
+                                                })
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="dropdown-signup">
                                     <span className="error_msg">{passedOutYearError && passedOutYearError}</span>
                                     <span className="error_msg">{branchError && branchError}</span>
+                                    <span className="error_msg">{courseError && courseError}</span>
                                 </div> </>
 
                             {/** Password */}

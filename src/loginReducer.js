@@ -1,5 +1,6 @@
 const initialState={
-    isLoggedIn: false
+    isLoggedIn: false,
+    isRegistered: false
 };
 
 const LoginReducer=(state=initialState, action)=>{
@@ -14,6 +15,12 @@ const LoginReducer=(state=initialState, action)=>{
             return {
                 ...state,
                 isLoggedIn: action.payLoad
+            }
+        }
+        case "USER_REGISTRATION":{
+            return {
+                ...state,
+                isRegistered: action.payLoad
             }
         }
         default:{
