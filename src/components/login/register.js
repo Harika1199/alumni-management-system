@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Header from '../../pages/header';
 import './login.css';
 
-export default function Registration({history}) {
+export default function Registration({ history }) {
     // Student And Alumni Details
     const emailRef = useRef("");
     const passwdRef = useRef("");
@@ -229,9 +229,8 @@ export default function Registration({history}) {
         <>
             <Header />
             <div className="full-screen mxw-500">
-
                 <div className="imgcontainer">
-                    <h3>Register</h3>
+                    <h2 className="signup-heading">Create an account</h2>
                 </div>
 
                 {/** User Type Tabs */}
@@ -240,13 +239,13 @@ export default function Registration({history}) {
                     {/** Nav tabs */}
                     <ul className="nav nav-tabs nav-justified" role="tablist">
                         <li className="nav-item">
-                            <a className={"nav-link" + getTabClassName(1)} data-toggle="tab" href="#tab1" onClick={(e) => {
+                            <a className={"nav-link user-tab" + getTabClassName(1)} data-toggle="tab" href="#tab1" onClick={(e) => {
                                 setUserType(1)
                             }}
                             >Student</a>
                         </li>
                         <li className="nav-item">
-                            <a className={"nav-link" + getTabClassName(2)} data-toggle="tab" href="#tab1" onClick={() => setUserType(2)}>Alumni</a>
+                            <a className={"nav-link user-tab" + getTabClassName(2)} data-toggle="tab" href="#tab1" onClick={() => setUserType(2)}>Alumni</a>
                         </li>
                     </ul>
 
@@ -256,14 +255,14 @@ export default function Registration({history}) {
                             {/** Full Name */}
                             <div>
                                 <label htmlFor="uname"><b>Full Name</b></label>
-                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete={"off"} maxLength={20}/>
+                                <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete={"off"} maxLength={20} />
                                 <span className="error_msg">{fullNameError && fullNameError}</span>
                             </div>
 
                             {/** Email Address */}
                             <div>
                                 <label htmlFor="uname"><b>Email ID</b></label>
-                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} maxLength={30}/>
+                                <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} maxLength={30} />
                                 <span className="error_msg">{emailError && emailError}</span>
                             </div>
                             {/** Contact no */}
@@ -286,7 +285,7 @@ export default function Registration({history}) {
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Occupation</b></label>
-                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required autoComplete={"off"} maxLength={20}/>
+                                    <input type="text" placeholder="Enter Occupation" name="uname" ref={jobRef} onChange={() => formValidation('jobRef')} required autoComplete={"off"} maxLength={20} />
                                     <span className="error_msg">{jobError && jobError}</span>
                                 </div>}
 
@@ -294,7 +293,7 @@ export default function Registration({history}) {
                             {userType && userType == 2 &&
                                 <div>
                                     <label htmlFor="uname"><b>Job Location</b></label>
-                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required autoComplete={"off"} maxLength={20}/>
+                                    <input type="text" placeholder="Enter Job Location" name="uname" ref={jobLocationRef} onChange={() => formValidation('jobLocationRef')} required autoComplete={"off"} maxLength={20} />
                                     <span className="error_msg">{jobLocationError && jobLocationError}</span>
                                 </div>}
 
@@ -305,7 +304,7 @@ export default function Registration({history}) {
                                         <div className="btn-group">
 
 
-                                            <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setPoyear(e.currentTarget.value);setPassedOutYearError("") }}>
+                                            <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setPoyear(e.currentTarget.value); setPassedOutYearError("") }}>
                                                 <option>Year of Pass</option>
                                                 {
                                                     [2020, 2019, 2018, 2017, 2016].map((eachYear, index) => {
@@ -327,7 +326,7 @@ export default function Registration({history}) {
                                     </div>
 
                                     <div className="btn-group">
-                                        <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setCourse(e.currentTarget.value);setCourseError("")}}>
+                                        <select className="btn btn-secondary dropdown-toggle" onChange={(e) => { setCourse(e.currentTarget.value); setCourseError("") }}>
                                             <option>Course</option>
                                             {
                                                 ["BTech", "BE", "MS", "MTech", "MBA"].map((eachCourse, index) => {
@@ -356,7 +355,7 @@ export default function Registration({history}) {
                                 <span className="error_msg">{confirmPasswdError && confirmPasswdError}</span>
                             </div>
 
-                            <button type="submit" onClick={() => handleSubmit()}>Signup</button>
+                            <button className="btn btn-primary" type="submit" onClick={() => handleSubmit()}>Signup</button>
                         </div>
                     </div>
 

@@ -1,12 +1,26 @@
+.home{
+  text-align: center;
+}
+
+.bg-dark{
+  background-color: transparent !important;
+}
+
 .home-banner{
-  width: 100%;
-  height: max-content;
+  height: 500px;
+  width: 90%;
+  margin: 20px;
+}
+
+.mr-30{
+  margin-right: 20px;
 }
 
 .home-heading{
   padding: 10px;
-  color: red;
+  color: #ffffff;
   text-align: center;
+  font-family: "Audiowide", sans-serif;
 }
 
 .logo{
@@ -27,4 +41,37 @@
 
 .navbar-nav{
   margin-left: 50px;
+}
+
+.about{
+  padding: 50px;
+  margin: auto;
+  color: white;
+}
+
+.about-heading{
+  font-family: "Audiowide", sans-serif;
+    margin: 10px;
+    padding-bottom: 10px;
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.about-para{
+  margin: auto;
+  line-height: 1.7rem;
+  font-family: Georgia;
+  padding: 5px;
+}
+
+.carousel button{
+  width: auto;
+}
+
+.carousel img{
+  width: 80%;
+  height: 400px;
+  left: 0px;
+  margin-right: 20px;
+  margin-left: 20px;
 }

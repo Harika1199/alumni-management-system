@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ToastMessage from '../toast/toastMessage';
 import Header from '../../pages/header';
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import './login.css';
 
@@ -11,14 +11,14 @@ export default function UserLogin({ history }) {
     const [emailError, setEmailError] = useState("");
     const [passwdError, setPasswsError] = useState("");
 
-    const state = useSelector(state=>state.login)
+    const state = useSelector(state => state.login)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(state.isRegistered){
-          ToastMessage.notify("Registered Successfully.Please Login..");
-        }         
-    },[state.isRegistered])
+        if (state.isRegistered) {
+            ToastMessage.notify("Registered Successfully.Please Login..");
+        }
+    }, [state.isRegistered])
 
     // Validate Email Address
     function validateEmail(email) {
@@ -71,7 +71,7 @@ export default function UserLogin({ history }) {
 
     const handleSubmit = () => {
         if (formValidation('all')) {
-            localStorage.setItem("token","xyz")
+            localStorage.setItem("token", "xyz")
             dispatch({ type: "USER_LOGIN", payLoad: true });
             history.push("/")
         }
@@ -80,39 +80,34 @@ export default function UserLogin({ history }) {
     return (
         <>
             <Header />
-            <div className="full-screen">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <form onsubmit="event.preventDefault()" class="box">
+                                <h1>Login</h1>
+                                <p class="text-muted"> Please enter your login and password!</p>
 
-                <div className="imgcontainer">
-                    <h3>Login</h3>
-                </div>
+                                {/** Email Address */}
+                                <div>
+                                    <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"} />
+                                    <span className="error_msg">{emailError && emailError}</span>
+                                </div>
 
-                <div className="container">
-                    {/** Email Address */}
-                    <div>
-                        <label htmlFor="uname"><b>Email ID</b></label>
-                        <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete={"off"}/>
-                        <span className="error_msg">{emailError && emailError}</span>
+                                {/** Password */}
+                                <div>
+                                    <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required autoComplete={"off"} />
+                                    <span className="error_msg">{passwdError && passwdError}</span>
+                                </div>
+
+                                <span class="forgot text-muted">New User?<Link to="/register"> Register Here</Link></span>
+                                {/* <a class="forgot text-muted" href="#">Forgot password?</a> */}
+                                <input type="submit" name="" value="Login" href="#" onClick={() => handleSubmit()} />
+                               
+                            </form>
+                        </div>
                     </div>
-
-                    {/** Password */}
-                    <div>
-                        <label htmlFor="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" ref={passwdRef} onChange={() => formValidation('passwdRef')} required autoComplete={"off"} />
-                        <span className="error_msg">{passwdError && passwdError}</span>
-                    </div>
-
-                    <button type="submit" onClick={() => handleSubmit()}>Login</button>
-                    {/* <label>
-                    <input type="checkbox" checked="checked" name="remember" /> Remember me
-                </label> */}
                 </div>
-
-                <div className="login-footer">
-                    <span className="psw">New User?<Link to="/login">Register Here</Link></span>
-                    <span className="psw"><a href="#">Forgot password?</a></span>
-                </div>
-
-
             </div>
         </>
     );

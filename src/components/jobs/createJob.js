@@ -51,7 +51,7 @@ export default function CreateJob({closePopup}) {
             }
             case "experienceRef": {
                 if (!experienceRef || !experienceRef.current || !experienceRef.current.value || (experienceRef && experienceRef.current.value.trim() === "")) {
-                    setExperienceError("Enter Required maxLength={30} Experience");
+                    setExperienceError("Enter Experience");
                     errorCount = errorCount + 1;
                 } else {
                     setExperienceError("");
@@ -113,40 +113,39 @@ export default function CreateJob({closePopup}) {
                             <h1 className="modal-title width-webkit">Post A Job</h1>
                             <button type="button" className="close width-max" onClick={()=> closePopup(false,"post")}>×</button>
                         </div>
-
                         {/**<!-- Modal body -->*/}
                         <div className="modal-body">
                             <div className="container">
                                 {/** Company Name */}
                                 <div>
                                     <label htmlFor="uname"><b>Company Name</b></label>
-                                    <input type="text" placeholder="Enter Company Name" name="uname" ref={companyNameRef} onChange={() => formValidation('companyNameRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter Company Name" name="uname" ref={companyNameRef} onChange={() => formValidation('companyNameRef')} required autoComplete='off' maxLength={20} />
                                     <span className="error_msg">{companyNameError && companyNameError}</span>
                                 </div>
 
                                 {/** Company Location */}
                                 <div>
                                     <label htmlFor="psw"><b>Location</b></label>
-                                    <input type="text" placeholder="Enter Company's Location" name="psw" ref={locationRef} onChange={() => formValidation('locationRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter Company's Location" name="psw" ref={locationRef} onChange={() => formValidation('locationRef')} required autoComplete='off' maxLength={20} />
                                     <span className="error_msg">{locationError && locationError}</span>
                                 </div>
 
                                 {/** Experience */}
                                 <div>
                                     <label htmlFor="psw"><b>Experience</b></label>
-                                    <input type="text" placeholder="Enter Experience" name="psw" ref={experienceRef} onChange={() => formValidation('experienceRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter Experience" name="psw" ref={experienceRef} onChange={() => formValidation('experienceRef')} required autoComplete='off' maxLength={20} />
                                     <span className="error_msg">{experienceError && experienceError}</span>
                                 </div>
                                 {/** Skills */}
                                 <div>
                                     <label htmlFor="psw"><b>Skills</b></label>
-                                    <input type="text" placeholder="Enter skills" name="psw" ref={skillsRef} onChange={() => formValidation('skillsRef')} required maxLength={40} />
+                                    <input type="text" placeholder="Enter skills" name="psw" ref={skillsRef} onChange={() => formValidation('skillsRef')} required autoComplete='off' maxLength={40} />
                                     <span className="error_msg">{skillsError && skillsError}</span>
                                 </div>
                                 {/** Package */}
                                 <div>
                                     <label htmlFor="psw"><b>CTC</b></label>
-                                    <input type="text" placeholder="Enter CTC P.A." name="psw" ref={packageRef} onChange={() => formValidation('packageRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter CTC P.A." name="psw" ref={packageRef} onChange={() => formValidation('packageRef')} required autoComplete='off' maxLength={20} />
                                     <span className="error_msg">{packageError && packageError}</span>
                                 </div>
                             </div>

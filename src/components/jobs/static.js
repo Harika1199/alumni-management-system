@@ -8,7 +8,7 @@ const jobs=[
         package:"3.5 LPA"
     },
     {
-        postedBy: "Nimish",
+        postedBy: "Rahul",
         companyName:"Infosys",
         location:"Hyderabad",
         experience:"2-3 years",
@@ -16,7 +16,7 @@ const jobs=[
         package:"5 LPA"
     },
     {
-        postedBy: "Hari",
+        postedBy: "Yasaswini",
         companyName:"TCS",
         location:"Banglaore",
         experience:"Freshers",

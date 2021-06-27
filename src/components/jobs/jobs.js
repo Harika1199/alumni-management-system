@@ -39,8 +39,8 @@ export default function Jobs({ history }) {
         <>
             <Header />
             <div className="container jobs">
-                <h2>Job Openings</h2>
-                <button type="button" className="btn btn-primary width-max align-right" data-toggle="modal" onClick={() => setOpenCreateJobPopup(!openCreateJobPopup)}>Post A Job</button>
+                <h2 className="job-heading">Job Openings</h2>
+                <button type="button" className="btn btn-outline-primary apply-job" data-toggle="modal" onClick={() => setOpenCreateJobPopup(!openCreateJobPopup)}>Post A Job</button>
 
                 {
                     jobContextValue.jobs.map((eachJob, index) => {
@@ -48,7 +48,7 @@ export default function Jobs({ history }) {
                             <div className="each-job" key={index}>
                                 <div className="job-header">
                                     <h4 className="posted-by">Posted By {eachJob.postedBy}</h4>
-                                    <button type="button" className="btn btn-primary width-max" data-toggle="modal" onClick={() => setOpenApplyJobPopup(!openApplyJobPopup)}>Apply For Job</button>
+                                    <button type="button" className="btn btn-outline-success post-job" data-toggle="modal" onClick={() => setOpenApplyJobPopup(!openApplyJobPopup)}>Apply For Job</button>
                                 </div>
                                 <div className="job-data">
                                     <p className="job-data-detail">{eachJob.companyName}</p>

@@ -111,21 +111,21 @@ export default function ApplyJob({closePopup}) {
                                 {/** Full Name */}
                                 <div>
                                     <label htmlFor="uname"><b>Full Name</b></label>
-                                    <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter Full Name" name="uname" ref={fullNameRef} onChange={() => formValidation('fullNameRef')} required autoComplete="off" maxLength={20} />
                                     <span className="error_msg">{fullNameError && fullNameError}</span>
                                 </div>
 
                                 {/** Email Address */}
                                 <div>
                                     <label htmlFor="uname"><b>Email ID</b></label>
-                                    <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required maxLength={20} />
+                                    <input type="text" placeholder="Enter Email" name="uname" ref={emailRef} onChange={() => formValidation('emailRef')} required autoComplete="off" maxLength={20} />
                                     <span className="error_msg">{emailError && emailError}</span>
                                 </div>
 
                                 {/** Contact no */}
                                 <div>
                                     <label htmlFor="uname"><b>Contact No</b></label>
-                                    <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required maxLength={10} />
+                                    <input type="text" placeholder="Enter Contact Number" name="uname" ref={contactRef} onChange={() => formValidation('contactRef')} required autoComplete="off" maxLength={10} />
                                     <span className="error_msg">{contactError && contactError}</span>
                                 </div>
                                 {/** Resume Upload */}

@@ -31,7 +31,7 @@
 
 .each-job{
     width: 100%;
-    background: #4474800a;
+    background: #8df5ff1c;;
     margin-bottom: 2rem;
 }
 
@@ -39,20 +39,55 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: #e69616;
     align-items: center;
+    margin: 5px;
+}
+
+.job-heading{
+    font-family: "Audiowide", sans-serif;
+    color: white;
+    align-self: flex-start;
 }
 
 .posted-by{
     padding-left: 10px;
+    color: #ffc92f;
+    font-size: 20px;
+    font-family: Verdana;
+    font-weight: 600;
 }
 
 .job-data{
     width: 100%;
     text-align: left !important;
     margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 .job-data-detail{
     margin: auto;
+    color: white;
+    font-size: 16px;
+    font-family: Monaco;
+}
+
+.post-job{
+    margin-right: 15px;
+    width: max-content;
+    align-self: flex-end;
+    color: #27fb00;
+}
+
+.post-job :hover{
+    color: green;
+}
+
+.apply-job{
+    margin-right: 15px;
+    width: max-content;
+    align-self: flex-end;
+    font-size: 20px;
+    color: #c7cad6;
+    font-weight: 900;
+    font-family: Helvetica;
 }
