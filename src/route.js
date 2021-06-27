@@ -3,7 +3,8 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Redirect
+    Redirect,
+    NotFoundRoute
 } from 'react-router-dom';
 import UserLogin from './login/login';
 import App from './App';
@@ -24,6 +25,7 @@ class Routes extends React.Component {
                     <Route exact path='/login' component={UserLogin}></Route>
                     <Route exact path='/jobs' component={Jobs}></Route>
                     <Route exact path='/pageNotFound' component={PageNotFound}></Route>
+                    <NotFoundRoute to="/pageNotFound"></NotFoundRoute>
                     <Redirect to="/pageNotFound"></Redirect>
                 </Switch>
             </Router>
