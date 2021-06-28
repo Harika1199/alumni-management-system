@@ -1,0 +1,39 @@
+
+.events{
+    text-align: center;
+}
+
+.events-heading{
+    color: #ffbc00;;
+}
+.each-event{
+    margin: 50px 100px 50px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background: white;
+    padding: 25px;
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+.read-more{
+    width: max-content;
+    height: max-content;
+}
+
+.read-more :hover{
+    background-color: #ffbc00;
+}
+
+.event-name{
+    font-family: "Trirong", serif;
+    font-weight: 900;
+}
+
+.event-desc{
+    font-size: 15px;
+    font-family: Verdana;
+    font-style: oblique;
+}

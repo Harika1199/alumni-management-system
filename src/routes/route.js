@@ -13,6 +13,7 @@ import PageNotFound from '../pages/pageNotFound';
 import Jobs from '../components/jobs/jobs';
 import history from './history';
 import JobContextProvider from '../components/jobs/useJob';
+import Events from '../components/events/events';
 
 class Routes extends React.Component {
     render() {
@@ -26,6 +27,7 @@ class Routes extends React.Component {
                         <Route exact path='/register' component={Registration}></Route>
                         <Route exact path='/login' component={UserLogin}></Route>
                         <Route exact path='/jobs' component={Jobs}></Route>
+                        <Route exact path='/events' component={Events}></Route>
                         <Route exact path='/pageNotFound' component={PageNotFound}></Route>
                         <Redirect to="/pageNotFound"></Redirect>
                     </Switch>

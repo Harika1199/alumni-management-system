@@ -28,6 +28,9 @@ export default function Header() {
                     <Link to="/jobs" className="nav-link">Jobs</Link>
                 </li>
                 <li className="nav-item mr-30">
+                    <Link to="/events" className="nav-link">Events</Link>
+                </li>
+                <li className="nav-item mr-30">
                     {
                         !state.isLoggedIn &&
                         <Link to="/login" className="nav-link">Login</Link>
