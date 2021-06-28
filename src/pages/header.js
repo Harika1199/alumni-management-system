@@ -8,7 +8,7 @@ export default function Header() {
 
     const Logout = () => {
         localStorage.removeItem("token");
-        dispatch({ type: "USER_LOGOUT", payLoad: false })
+        dispatch({ type: "USER_LOGIN", payLoad: false });
     }
     return (
         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -33,12 +33,13 @@ export default function Header() {
                         <Link to="/login" className="nav-link">Login</Link>
                     }
                 </li>
-                <li className="nav-item mr-30">
-                    {
-                        !state.isLoggedIn &&
+                {
+                    !state.isLoggedIn &&
+                    <li className="nav-item mr-30">
+
                         <Link to="/register" className="nav-link">Register</Link>
-                    }
-                </li>
+
+                    </li>}
                 {
                     state.isLoggedIn &&
                     <li className="nav-item mr-30 dropdown">

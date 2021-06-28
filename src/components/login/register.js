@@ -203,6 +203,8 @@ export default function Registration({ history }) {
     const handleSubmit = () => {
         if (formValidation('all')) {
             dispatch({ type: "USER_REGISTRATION", payLoad: true });
+            dispatch({ type: "USER_SIGNUP_TOAST", payLoad: true });
+
             history.push("/login");
         }
     }

@@ -3,17 +3,19 @@ import Header from '../pages/header';
 // import banner from '../images/banner.jpg';
 import {useEffect} from 'react';
 import ToastMessage from './toast/toastMessage';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import CarouselComponent from '../pages/carousel';
 
 function App() {
-  const state = useSelector(state=>state.login)
+  const state = useSelector(state=>state.login);
+  const dispatch = useDispatch();
   
   useEffect(() => {
-    if(state.isLoggedIn){
+    if(state.showLoginToast){
       ToastMessage.notify("Logged In Successfully");
+      dispatch({ type: "USER_LOGIN_TOAST", payLoad: false });
     } 
-  },[state.isLoggedIn])
+  },[state.showLoginToast])
   return (
     <div className="App" id='body-div'>
       <Header />

@@ -64,12 +64,17 @@
   padding: 5px;
 }
 
+.carousel-div{
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
 .carousel button{
   width: auto;
 }
 
-.carousel img{
-  width: 80%;
+.carousel .slide img{
+  width: 90% !important;
   height: 400px;
   left: 0px;
   margin-right: 20px;

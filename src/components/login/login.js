@@ -15,10 +15,11 @@ export default function UserLogin({ history }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (state.isRegistered) {
+        if (state.showRegisterToast) {
             ToastMessage.notify("Registered Successfully.Please Login..");
+            dispatch({ type: "USER_SIGNUP_TOAST", payLoad: false });
         }
-    }, [state.isRegistered])
+    }, [state.showRegisterToast])
 
     // Validate Email Address
     function validateEmail(email) {
@@ -73,6 +74,7 @@ export default function UserLogin({ history }) {
         if (formValidation('all')) {
             localStorage.setItem("token", "xyz")
             dispatch({ type: "USER_LOGIN", payLoad: true });
+            dispatch({ type: "USER_LOGIN_TOAST", payLoad: true });
             history.push("/")
         }
     }
