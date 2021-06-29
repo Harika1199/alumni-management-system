@@ -41,6 +41,7 @@
 
 .navbar-nav{
   margin-left: 50px;
+  white-space: nowrap;
 }
 
 .about{

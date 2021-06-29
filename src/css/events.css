@@ -4,10 +4,10 @@
 }
 
 .events-heading{
-    color: #ffbc00;;
+    color: #ffbc00;
 }
 .each-event{
-    margin: 50px 100px 50px 100px;
+    margin: 0px 100px 50px 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -24,7 +24,7 @@
 }
 
 .read-more :hover{
-    background-color: #ffbc00;
+    background-color: #ffbc00 !important;
 }
 
 .event-name{

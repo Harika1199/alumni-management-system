@@ -82,13 +82,13 @@ export default function UserLogin({ history }) {
     return (
         <>
             <Header />
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <form onsubmit="event.preventDefault()" class="box">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="card">
+                            <form className="box">
                                 <h1>Login</h1>
-                                <p class="text-muted"> Please enter your login and password!</p>
+                                <p className="text-muted"> Please enter your login and password!</p>
 
                                 {/** Email Address */}
                                 <div>
@@ -102,8 +102,8 @@ export default function UserLogin({ history }) {
                                     <span className="error_msg">{passwdError && passwdError}</span>
                                 </div>
 
-                                <span class="forgot text-muted">New User?<Link to="/register"> Register Here</Link></span>
-                                {/* <a class="forgot text-muted" href="#">Forgot password?</a> */}
+                                <span className="forgot text-muted">New User?<Link to="/register"> Register Here</Link></span>
+                                {/* <a className="forgot text-muted" href="#">Forgot password?</a> */}
                                 <input type="submit" name="" value="Login" href="#" onClick={() => handleSubmit()} />
                                
                             </form>

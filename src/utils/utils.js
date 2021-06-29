@@ -1,0 +1,2 @@
+export const EventText="It is important to carry out a good follow-up marketing of alumni events.With over 100 worldwide events a year, you have a wealth of alumni networking opportunities.";
+export const TrainigsAndWorkshopsText=" Let's  join the amazing Alumni trainings and Workshops and Enhance your knowledge"

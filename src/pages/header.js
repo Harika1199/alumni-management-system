@@ -11,7 +11,7 @@ export default function Header() {
         dispatch({ type: "USER_LOGIN", payLoad: false });
     }
     return (
-        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+        <nav className="navbar navbar-expand-md navbar-expand-sm bg-dark navbar-dark">
             <div className="logo">
                 <Link to="/" className="navbar-brand font-effect-fire">
                     Alumni Management system
@@ -29,6 +29,9 @@ export default function Header() {
                 </li>
                 <li className="nav-item mr-30">
                     <Link to="/events" className="nav-link">Events</Link>
+                </li>
+                <li className="nav-item mr-30">
+                    <Link to="/trainingsAndWorkshops" className="nav-link">{'Trainings & Workshops'}</Link>
                 </li>
                 <li className="nav-item mr-30">
                     {
