@@ -13,8 +13,10 @@ export default function CreateJob({closePopup}) {
     const [skillsError, setSkillsError] = useState("");
     const [packageError, setPackageError] = useState("");
 
+    // Using context of jobs data
     const jobContextValue = useContext(JobContext);
 
+    // Validates all the fields taken as input
     const formValidation = (refName) => {
         let errorCount = 0;
         switch (refName) {
@@ -86,6 +88,9 @@ export default function CreateJob({closePopup}) {
         return errorCount === 0 ? true : false;
     }
 
+    /**
+     * Submits data on succesful validation
+     */
     const handleSubmit = () => {
         if (formValidation('all')) {
             let newJob={

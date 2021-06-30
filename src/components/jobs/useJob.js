@@ -1,9 +1,8 @@
 import { createContext,useState} from 'react';
 import jobsList from './static';
 export const JobContext = createContext();
-// export function useDetails() {
-// 	return useContext(JobContext);
-// }
+
+// Creating a Context for jobs data to do operations on it and to use it anywhere.
 const JobContextProvider=(props)=> {
     const [jobs, setJobs] = useState(jobsList);
     return (

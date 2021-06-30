@@ -1,3 +1,4 @@
+// List of Default Trainings and Workshops
 const trainings=[
     {
         sNo: 1,

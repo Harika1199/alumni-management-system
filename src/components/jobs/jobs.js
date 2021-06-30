@@ -8,11 +8,14 @@ import { JobContext } from "./useJob";
 import { useSelector } from 'react-redux';
 
 export default function Jobs({ history }) {
+    // state variables
     const [openCreateJobPopup, setOpenCreateJobPopup] = useState(false);
     const [openApplyJobPopup, setOpenApplyJobPopup] = useState(false);
 
+    // Using context of jobs data
     const jobContextValue = useContext(JobContext);
 
+    // Using redux store data of login Reducer
     const state = useSelector(state => state.login)
 
     useEffect(() => {
@@ -22,6 +25,7 @@ export default function Jobs({ history }) {
         }
     }, [state.isLoggedIn])
 
+    // Popup Open/Close handling
     const closePopup = (status, type) => {
         if (type == "post") {
             if (status) {
@@ -40,7 +44,7 @@ export default function Jobs({ history }) {
             <Header />
             <div className="container jobs">
                 <h2 className="job-heading">Job Openings</h2>
-                <button type="button" className="btn btn-outline-primary apply-job" data-toggle="modal" onClick={() => setOpenCreateJobPopup(!openCreateJobPopup)}>Post A Job</button>
+                {state.loginData && state.loginData.usertype && state.loginData.usertype == 2 && <button type="button" className="btn btn-outline-primary apply-job" data-toggle="modal" onClick={() => setOpenCreateJobPopup(!openCreateJobPopup)}>Post A Job</button>}
 
                 {
                     jobContextValue.jobs.map((eachJob, index) => {

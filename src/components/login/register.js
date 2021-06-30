@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Header from '../../pages/header';
+import { useSelector } from "react-redux";
 import './login.css';
 
 export default function Registration({ history }) {
@@ -30,6 +31,7 @@ export default function Registration({ history }) {
     const [course, setCourse] = useState("");
     const [poyear, setPoyear] = useState("");
 
+    const [state, signupUsersState] = useSelector(state => [state.login, state.signup])
     const dispatch = useDispatch();
 
 
@@ -39,7 +41,7 @@ export default function Registration({ history }) {
         return re.test(String(email).toLowerCase());
     }
 
-
+    // Validates all the fields taken as input
     const formValidation = (refName) => {
         let errorCount = 0;
         switch (refName) {
@@ -54,7 +56,17 @@ export default function Registration({ history }) {
                     setEmailError("Invalid Email ID");
                     errorCount = errorCount + 1;
                 } else {
-                    setEmailError("");
+                    if (signupUsersState.users && signupUsersState.users.length > 0) {
+                        let status = signupUsersState.users.filter((each) => each.email === emailRef.current.value.trim());
+                        if (status && status.length !== 0) {
+                            setEmailError("Email Already Exists");
+                        } else {
+                            setEmailError("");
+                        }
+                    } else {
+                        setEmailError("");
+                    }
+
                 }
                 if (refName !== "all") {
                     break;
@@ -200,11 +212,22 @@ export default function Registration({ history }) {
 
     }
 
+    /**
+    * Submits data on succesful validation
+    */
     const handleSubmit = () => {
         if (formValidation('all')) {
             dispatch({ type: "USER_REGISTRATION", payLoad: true });
             dispatch({ type: "USER_SIGNUP_TOAST", payLoad: true });
-
+            if (!localStorage.getItem("users")) {
+                localStorage.setItem("users", JSON.stringify([{ email: emailRef.current.value.trim(), usertype: userType, name: fullNameRef.current.value.trim() }]))
+            } else {
+                let newuser = { email: emailRef.current.value.trim(), usertype: userType, name: fullNameRef.current.value.trim() };
+                let localusers = JSON.parse(localStorage.getItem("users"));
+                localusers.push(newuser);
+                localStorage.setItem("item", JSON.stringify(localusers));
+            }
+            dispatch({ type: "SAVE_USER", payLoad: { 'email': emailRef.current.value.trim(), 'passwd': passwdRef.current.value.trim(), 'usertype': userType } });
             history.push("/login");
         }
     }

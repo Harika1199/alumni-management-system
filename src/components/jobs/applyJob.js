@@ -18,6 +18,7 @@ export default function ApplyJob({closePopup}) {
         return re.test(String(email).toLowerCase());
     }
 
+    // Validates all the fields taken as input
     const formValidation = (refName) => {
         let errorCount = 0;
         switch (refName) {
@@ -84,6 +85,9 @@ export default function ApplyJob({closePopup}) {
         return errorCount === 0 ? true : false;
     }
 
+    /**
+     * Submits data on succesful validation
+     */
     const handleSubmit = () => {
         if (formValidation('all')) {
             closePopup(true,"apply");

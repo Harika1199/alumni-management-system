@@ -2,6 +2,7 @@ import Header from "../../pages/header";
 import '../../css/App.css';
 import '../../css/events.css';
 import { EventText } from "../../utils/utils";
+// DISPLAYING LIST OF EVENTS 
 export default function Events() {
     return (
         <>

@@ -12,6 +12,7 @@ export default function TrainingsAndWorkshops() {
                 <h3 className="events-heading about-heading">Trainings And Workshops</h3>
                 <marquee><i><p className="event-desc" className="about-para">*{TrainigsAndWorkshopsText}</p></i></marquee>
             </div>
+            {/** TABLE SHOWING LIST OF TRAININGS AND WORKSHOPS DEFINED IN static.js file */}
             <div className="table-body">
                 <table className="table table-hover table-style">
                     <thead>

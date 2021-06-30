@@ -5,12 +5,15 @@ import '../css/App.css';
 export default function Header() {
     const state = useSelector(state => state.login);
     const dispatch = useDispatch();
-
+    
     const Logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userLoginData");
         dispatch({ type: "USER_LOGIN", payLoad: false });
+        dispatch({ type: "SAVE_LOGIN_DATA", payLoad: {} });
     }
     return (
+        
         <nav className="navbar navbar-expand-md navbar-expand-sm bg-dark navbar-dark">
             <div className="logo">
                 <Link to="/" className="navbar-brand font-effect-fire">
@@ -50,7 +53,7 @@ export default function Header() {
                     state.isLoggedIn &&
                     <li className="nav-item mr-30 dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            My Account
+                            {state.loginData && state.loginData.name ?state.loginData.name:'My Account'}
                         </a>
                         <div className="dropdown-menu">
                             <Link to="/" className="dropdown-item" onClick={() => { Logout() }}>Logout

@@ -7,9 +7,14 @@ class Toast extends Component {
         super(props);
         this.state = { 
         };
+        // Configure toast
         toast.configure();
     }
     
+    /**
+     * Reusable method 
+     * @param  message - defined message
+     */
     notify(message) {
         toast(message);
     };

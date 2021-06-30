@@ -6,14 +6,17 @@ import { Link } from 'react-router-dom';
 import './login.css';
 
 export default function UserLogin({ history }) {
+    // state variables
     const emailRef = useRef("");
     const passwdRef = useRef("");
     const [emailError, setEmailError] = useState("");
-    const [passwdError, setPasswsError] = useState("");
+    const [passwdError, setPasswdError] = useState("");
 
-    const state = useSelector(state => state.login)
+    // Redux store access variables
+    const [state, signupUsersState] = useSelector(state => [state.login, state.signup])
     const dispatch = useDispatch();
 
+    // Toast message
     useEffect(() => {
         if (state.showRegisterToast) {
             ToastMessage.notify("Registered Successfully.Please Login..");
@@ -27,7 +30,7 @@ export default function UserLogin({ history }) {
         return re.test(String(email).toLowerCase());
     }
 
-
+    // Validates all the fields taken as input
     const formValidation = (refName) => {
         let errorCount = 0;
         switch (refName) {
@@ -35,12 +38,11 @@ export default function UserLogin({ history }) {
 
             }
             case "emailRef": {
-
                 if (!emailRef || !emailRef.current || !emailRef.current.value || (emailRef && emailRef.current.value.trim() === "")) {
                     setEmailError("Please Enter Email Address");
                     errorCount = errorCount + 1;
                 } else if (!validateEmail(emailRef.current.value.trim())) {
-                    setEmailError("Invalid Email ID");
+                    setEmailError("Invalid Email Address");
                     errorCount = errorCount + 1;
                 } else {
                     setEmailError("");
@@ -51,10 +53,10 @@ export default function UserLogin({ history }) {
             }
             case "passwdRef": {
                 if (!passwdRef || !passwdRef.current || !passwdRef.current.value || (passwdRef && passwdRef.current.value.trim() === "")) {
-                    setPasswsError("Please Enter Password");
+                    setPasswdError("Please Enter Password");
                     errorCount = errorCount + 1;
                 } else {
-                    setPasswsError("");
+                    setPasswdError("");
                 }
                 if (refName !== "all") {
                     break;
@@ -70,12 +72,39 @@ export default function UserLogin({ history }) {
 
     }
 
+    // Submits the login info
     const handleSubmit = () => {
         if (formValidation('all')) {
-            localStorage.setItem("token", "xyz")
-            dispatch({ type: "USER_LOGIN", payLoad: true });
-            dispatch({ type: "USER_LOGIN_TOAST", payLoad: true });
-            history.push("/")
+            let estatus = true;
+            let pstatus = true;
+            if (signupUsersState.users && signupUsersState.users.length > 0) {
+                let status = signupUsersState.users.filter((each) => each.email === emailRef.current.value.trim());
+                if (status && status.length !== 1) {
+                    estatus = false;
+                }
+            } else {
+                estatus = false;
+            }
+            if (signupUsersState.users && signupUsersState.users.length > 0) {
+                let status = signupUsersState.users.filter((each) => each.passwd === passwdRef.current.value.trim());
+                if (status && status.length === 1) {
+                    pstatus = false;
+                }
+            } else {
+                pstatus = false;
+            }
+
+            if (!estatus || !pstatus) {
+                setPasswdError("Incorrect Email or Password")
+            } else {
+                let usertypevalue= signupUsersState.users.filter((each)=>each.email === emailRef.current.value.trim());
+                localStorage.setItem("token", "xyz")
+                dispatch({ type: "USER_LOGIN", payLoad: true });
+                dispatch({ type: "USER_LOGIN_TOAST", payLoad: true });
+                localStorage.setItem("userLoginData",JSON.stringify({email:emailRef.current.value.trim(),passwd: passwdRef.current.value.trim(),usertype:usertypevalue[0].usertype,name:usertypevalue[0].name}));
+                dispatch({ type: "SAVE_LOGIN_DATA", payLoad: {email:emailRef.current.value.trim(),passwd: passwdRef.current.value.trim(),usertype:usertypevalue[0].usertype,name:usertypevalue[0].name} });
+                history.push("/")
+            }
         }
     }
 
@@ -86,7 +115,7 @@ export default function UserLogin({ history }) {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="card">
-                            <form className="box">
+                            <div className="box">
                                 <h1>Login</h1>
                                 <p className="text-muted"> Please enter your login and password!</p>
 
@@ -104,9 +133,9 @@ export default function UserLogin({ history }) {
 
                                 <span className="forgot text-muted">New User?<Link to="/register"> Register Here</Link></span>
                                 {/* <a className="forgot text-muted" href="#">Forgot password?</a> */}
-                                <input type="submit" name="" value="Login" href="#" onClick={() => handleSubmit()} />
-                               
-                            </form>
+                                <input type="submit" name="" value="Login" onClick={() => handleSubmit()} />
+
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,8 @@ const initialState={
     isLoggedIn: localStorage.getItem("token") ? true:false,
     isRegistered: false,
     showLoginToast: false,
-    showRegisterToast: false
+    showRegisterToast: false,
+    loginData:localStorage.getItem("userLoginData")?localStorage.getItem("userLoginData"):{}
 };
 
 const LoginReducer=(state=initialState, action)=>{
@@ -11,6 +12,12 @@ const LoginReducer=(state=initialState, action)=>{
             return {
                 ...state,
                 isLoggedIn: action.payLoad
+            }
+        }
+        case "SAVE_LOGIN_DATA":{
+            return {
+                ...state,
+                loginData: action.payLoad
             }
         }
         case "USER_LOGIN_TOAST":{
