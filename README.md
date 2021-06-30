@@ -20,5 +20,41 @@ And below are the steps used for deployment.
 
 ## **Features of Alumni Management System**
 
+### **Home Page**
+
+![AMS HOME](/src/images/screenshots/home.png)<br>
+
+### **Registration**
+- Alumni/Student can register themselves into AMS in one simple step.
+![AMS REGISTRATION](/src/images/screenshots/register.png)<br>
+
+### **Login**
+- Alumni/Student can Login into AMS in one simple step.
+![AMS LOGIN](/src/images/screenshots/login.png)<br>
+
+### **About us**
+- Abstract Idea of Alumni Management System
+![AMS REGISTRATION](/src/images/screenshots/about.png)<br>
+
+### **Jobs**
+- Alumni/Students can find jobs in this section posted by both alumni and any authenticated person from college authority.
+![AMS REGISTRATION](/src/images/screenshots/jobs.png)<br>
+
+### **Post A Job**
+- Registered Alumni can post/refer jobs to their juniors/co-alumni students.
+![AMS REGISTRATION](/src/images/screenshots/postJob.png)<br>
+
+### **Apply For A Job**
+- Registered Student can apply for the jobs based on the job description.
+![AMS REGISTRATION](/src/images/screenshots/applyJob.png)<br>
+
+### **Events**
+- Fests/Events/Ceremonies/Convocaitions will be listed in this screen.
+![AMS REGISTRATION](/src/images/screenshots/events.png)<br>
+
+### **Trainings & Workshops**
+- Alumni/Any higher authority can post about the Workshops and trainings .
+![AMS REGISTRATION](/src/images/screenshots/trainings.png)<br>
+
 
 
