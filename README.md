@@ -24,6 +24,10 @@ And below are the steps used for deployment.
 
 ![AMS HOME](/src/images/screenshots/home.png)<br>
 
+### **About us**
+- Abstract Idea of Alumni Management System
+![AMS REGISTRATION](/src/images/screenshots/about.png)<br>
+
 ### **Registration**
 - Alumni/Student can register themselves into AMS in one simple step.
 ![AMS REGISTRATION](/src/images/screenshots/register.png)<br>
@@ -31,10 +35,6 @@ And below are the steps used for deployment.
 ### **Login**
 - Alumni/Student can Login into AMS in one simple step.
 ![AMS LOGIN](/src/images/screenshots/login.png)<br>
-
-### **About us**
-- Abstract Idea of Alumni Management System
-![AMS REGISTRATION](/src/images/screenshots/about.png)<br>
 
 ### **Jobs**
 - Alumni/Students can find jobs in this section posted by both alumni and any authenticated person from college authority.
